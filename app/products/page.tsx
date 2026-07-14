@@ -17,37 +17,37 @@ const PRODUCTS = [
     name: "Fire extinguishers",
     category: "FIRE SAFETY",
     description: "CO2, foam and dry powder units, supplied and serviced on site.",
-    dot: "bg-brand-red",
+    accent: "red" as const,
   },
   {
     name: "Smoke and heat detectors",
     category: "FIRE SAFETY",
     description: "Detection systems for offices, warehouses and institutions.",
-    dot: "bg-brand-red",
+    accent: "red" as const,
   },
   {
     name: "Protective coveralls",
     category: "PPE",
     description: "Chemical-resistant coveralls, gloves and respirators for site teams.",
-    dot: "bg-brand-orange",
+    accent: "orange" as const,
   },
   {
     name: "Safety helmets and boots",
     category: "PPE",
     description: "Certified head and foot protection for industrial sites.",
-    dot: "bg-brand-orange",
+    accent: "orange" as const,
   },
   {
     name: "Fumigation chemicals",
     category: "FUMIGATION SUPPLIES",
     description: "Licensed pest and termite control products for commercial use.",
-    dot: "bg-charcoal",
+    accent: "charcoal" as const,
   },
   {
     name: "Safety signage",
     category: "SIGNAGE",
     description: "Hazard, exit and compliance signage built to local standards.",
-    dot: "bg-charcoal",
+    accent: "charcoal" as const,
   },
 ];
 

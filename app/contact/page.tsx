@@ -4,6 +4,13 @@ import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
 import ContactInfoCard from "@/components/ContactInfoCard";
 import Footer from "@/components/Footer";
+import {
+  PhoneIcon,
+  EmailIcon,
+  OfficeIcon,
+  ClockIcon,
+  WhatsAppIcon,
+} from "@/components/icons/ContactIcons";
 
 export const metadata: Metadata = {
   title: "Contact | Domel Safety",
@@ -14,23 +21,36 @@ export const metadata: Metadata = {
 const CONTACT_INFO = [
   {
     label: "Phone",
-    value: "+255 7XX XXX XXX",
-    icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
+    value: "+255 695 118 422 / 0676 958 607",
+    icon: <PhoneIcon />,
+    href: "tel:+255695118422",
+    accent: "red" as const,
+  },
+  {
+    label: "WhatsApp",
+    value: "+255 695 118 422",
+    icon: <WhatsAppIcon />,
+    href: "https://wa.me/255695118422",
+    accent: "orange" as const,
   },
   {
     label: "Email",
     value: "info@domelsafety.co.tz",
-    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    icon: <EmailIcon />,
+    href: "mailto:info@domelsafety.co.tz",
+    accent: "charcoal" as const,
   },
   {
     label: "Office",
-    value: "Dar es Salaam, Tanzania",
-    icon: "M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
+    value: "P.O. Box 8323, Dar es Salaam, Tanzania",
+    icon: <OfficeIcon />,
+    accent: "red" as const,
   },
   {
     label: "Hours",
     value: "Mon–Sat, 24/7 callout line",
-    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+    icon: <ClockIcon />,
+    accent: "orange" as const,
   },
 ];
 
