@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { inputClass, labelClass } from "./formField";
+import { supabase } from "@/lib/supabase";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -13,18 +14,25 @@ export default function RequestQuoteForm() {
     setStatus("submitting");
 
     const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
 
-    try {
-      // TODO: wire to Supabase (insert into `quotations` table) once the
-      // backend is connected. For now this is a client-side stub.
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      console.log("Quote request payload", payload);
-      setStatus("success");
-      form.reset();
-    } catch {
+    const { error } = await supabase.from("quotations").insert({
+      full_name: data.get("fullName") as string,
+      company: (data.get("company") as string) || null,
+      email: data.get("email") as string,
+      phone: data.get("phone") as string,
+      service: data.get("service") as string,
+      details: (data.get("details") as string) || null,
+    });
+
+    if (error) {
+      console.error("Quote request error", error);
       setStatus("error");
+      return;
     }
+
+    setStatus("success");
+    form.reset();
   }
 
   if (status === "success") {

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { inputClass, labelClass } from "./formField";
+import { supabase } from "@/lib/supabase";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -13,17 +14,23 @@ export default function ContactForm() {
     setStatus("submitting");
 
     const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
 
-    try {
-      // TODO: wire to Supabase (insert into `contact_messages` table).
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      console.log("Contact message payload", payload);
-      setStatus("success");
-      form.reset();
-    } catch {
+    const { error } = await supabase.from("contact_messages").insert({
+      full_name: data.get("fullName") as string,
+      email: data.get("email") as string,
+      subject: data.get("subject") as string,
+      message: data.get("message") as string,
+    });
+
+    if (error) {
+      console.error("Contact message error", error);
       setStatus("error");
+      return;
     }
+
+    setStatus("success");
+    form.reset();
   }
 
   if (status === "success") {

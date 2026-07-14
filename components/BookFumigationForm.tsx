@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { inputClass, labelClass } from "./formField";
+import { supabase } from "@/lib/supabase";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -13,18 +14,27 @@ export default function BookFumigationForm() {
     setStatus("submitting");
 
     const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
 
-    try {
-      // TODO: wire to Supabase (insert into `bookings` table) once the
-      // backend is connected. For now this is a client-side stub.
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      console.log("Fumigation booking payload", payload);
-      setStatus("success");
-      form.reset();
-    } catch {
+    const { error } = await supabase.from("bookings").insert({
+      full_name: data.get("fullName") as string,
+      company: (data.get("company") as string) || null,
+      email: data.get("email") as string,
+      phone: data.get("phone") as string,
+      property_type: data.get("propertyType") as string,
+      preferred_date: data.get("preferredDate") as string,
+      address: data.get("address") as string,
+      notes: (data.get("notes") as string) || null,
+    });
+
+    if (error) {
+      console.error("Fumigation booking error", error);
       setStatus("error");
+      return;
     }
+
+    setStatus("success");
+    form.reset();
   }
 
   if (status === "success") {
