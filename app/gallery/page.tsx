@@ -11,7 +11,9 @@ export const metadata: Metadata = {
     "A look at Domel Safety's inspection, fumigation and consultation work across Tanzania.",
 };
 
-const TILES = [
+type Category = "Inspections" | "Fumigation" | "Consultation";
+
+const TILES: { category: Category; tint: string }[] = [
   { category: "Inspections", tint: "bg-brand-red/10" },
   { category: "Fumigation", tint: "bg-brand-orange/10" },
   { category: "Consultation", tint: "bg-charcoal/10" },
