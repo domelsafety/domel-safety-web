@@ -8,21 +8,20 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Gallery | Domel Safety",
   description:
-    "A look at Domel Safety's inspection, fumigation and consultation work across Tanzania.",
+    "A look at Domel Safety's fire safety, PPE, fumigation and inspection work across Tanzania.",
 };
 
-type Category = "Inspections" | "Fumigation" | "Consultation";
-
-const TILES: { category: Category; tint: string }[] = [
-  { category: "Inspections", tint: "bg-brand-red/10" },
-  { category: "Fumigation", tint: "bg-brand-orange/10" },
-  { category: "Consultation", tint: "bg-charcoal/10" },
-  { category: "Inspections", tint: "bg-brand-orange/10" },
-  { category: "Fumigation", tint: "bg-charcoal/10" },
-  { category: "Consultation", tint: "bg-brand-red/10" },
-  { category: "Inspections", tint: "bg-charcoal/10" },
-  { category: "Fumigation", tint: "bg-brand-red/10" },
-  { category: "Consultation", tint: "bg-brand-orange/10" },
+const TILES: { src: string; title: string; location: string }[] = [
+  { src: "/gallery/fire_alarm_hydrant.png", title: "Fire Alarm & Hydrant System Installation", location: "Dar es Salaam" },
+  { src: "/gallery/fire_extinguishers.png", title: "Fire Extinguishers Supply & Maintenance", location: "Dar es Salaam" },
+  { src: "/gallery/fire_hose_reel.png", title: "Fire Hose Reel System Installation", location: "Arusha" },
+  { src: "/gallery/safety_inspection.png", title: "Safety Inspection & Risk Assessment", location: "Mwanza" },
+  { src: "/gallery/fumigation_service.png", title: "Fumigation Service - Commercial Building", location: "Dar es Salaam" },
+  { src: "/gallery/ppe_supply.png", title: "PPE Supply to Construction Site", location: "Dodoma" },
+  { src: "/gallery/smoke_detector.png", title: "Smoke Detector Installation", location: "Dar es Salaam" },
+  { src: "/gallery/fire_safety_training.png", title: "Fire Safety Training Session", location: "Dar es Salaam" },
+  { src: "/gallery/warehouse_fumigation.png", title: "Warehouse Fumigation", location: "Morogoro" },
+  { src: "/gallery/fire_drill_emergency.png", title: "Fire Drill & Emergency Training", location: "Dar es Salaam" },
 ];
 
 export default function GalleryPage() {
@@ -32,13 +31,13 @@ export default function GalleryPage() {
       <PageHero
         eyebrow="GALLERY"
         title="Our work on site"
-        description="Photos from recent inspections, fumigation jobs and safety consultations. Real project photos go here as jobs are completed."
+        description="Photos from recent installations, inspections, fumigation jobs and safety training across Tanzania."
       />
 
       <section className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {TILES.map((tile, i) => (
-            <GalleryTile key={`${tile.category}-${i}`} {...tile} />
+          {TILES.map((tile) => (
+            <GalleryTile key={tile.src} {...tile} />
           ))}
         </div>
       </section>
