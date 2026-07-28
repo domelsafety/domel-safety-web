@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PhoneIcon, EmailIcon, WhatsAppIcon } from "@/components/icons/ContactIcons";
 
 const LINKS = [
+  { label: "About", href: "/about" },
   { label: "Products", href: "/products" },
   { label: "Services", href: "/services" },
   { label: "Gallery", href: "/gallery" },
