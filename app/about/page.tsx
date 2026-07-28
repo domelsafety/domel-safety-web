@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Stats from "@/components/Stats";
 import ValueCard from "@/components/ValueCard";
-import ComplianceBadge from "@/components/ComplianceBadge";
+import ComplianceCertificates from "@/components/ComplianceCertificates";
 import ClientLogo from "@/components/ClientLogo";
 import CtaBanner from "@/components/CtaBanner";
 import Footer from "@/components/Footer";
@@ -49,24 +49,28 @@ const COMPLIANCE = [
     issuer: "BRELA \u2014 Business Registrations and Licensing Agency",
     reference: "Reg. No. 186796837",
     validity: "Incorporated 12 July 2025",
+    image: "/compliance/brela-certificate.jpg",
   },
   {
     title: "Taxpayer Identification Number (TIN)",
     issuer: "Tanzania Revenue Authority",
     reference: "TIN 186-796-837",
     validity: "Tax Office: Goba \u00b7 Salasala, Dar es Salaam",
+    image: "/compliance/tin-certificate.jpg",
   },
   {
     title: "Certificate of Competence",
     issuer: "Ministry of Home Affairs \u2014 Fire and Rescue Force",
     reference: "Serial No. A2021-00618",
     validity: "Valid 03 Sept 2025 \u2013 02 Sept 2026",
+    image: "/compliance/fire-rescue-certificate.jpg",
   },
   {
     title: "Business License",
     issuer: "Kinondoni Municipal Council",
     reference: "BL01396912025-2600003079",
     validity: "Valid 28 Jul 2025 \u2013 27 Jul 2026",
+    image: "/compliance/business-license.jpg",
   },
 ];
 
@@ -169,11 +173,7 @@ export default function AboutPage() {
             Tanzania, from company registration to fire authority
             certification.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {COMPLIANCE.map((item) => (
-              <ComplianceBadge key={item.title} {...item} />
-            ))}
-          </div>
+          <ComplianceCertificates items={COMPLIANCE} />
         </div>
       </section>
 
