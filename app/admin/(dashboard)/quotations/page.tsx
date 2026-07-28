@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import StatusSelect from "@/components/admin/StatusSelect";
 import EmptyState from "@/components/admin/EmptyState";
@@ -12,9 +13,17 @@ export default async function QuotationsPage() {
 
   return (
     <div className="p-8">
-      <h1 className="font-display text-2xl font-bold text-charcoal mb-1">
-        Quotations
-      </h1>
+      <div className="flex items-center justify-between mb-1">
+        <h1 className="font-display text-2xl font-bold text-charcoal">
+          Quotations
+        </h1>
+        <Link
+          href="/admin/quotations/new"
+          className="bg-brand-red text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-brand-red/90 transition-colors"
+        >
+          + Quotation Mpya
+        </Link>
+      </div>
       <p className="text-sm text-steel mb-6">
         Maombi ya bei yaliyotumwa kutoka tovuti.
       </p>
@@ -41,6 +50,7 @@ export default async function QuotationsPage() {
                 <th className="px-4 py-3 font-mono text-xs text-steel">
                   Status
                 </th>
+                <th className="px-4 py-3" />
               </tr>
             </thead>
             <tbody>
@@ -76,6 +86,14 @@ export default async function QuotationsPage() {
                       options={["new", "contacted", "closed"]}
                       action={updateQuotationStatus}
                     />
+                  </td>
+                  <td className="px-4 py-3 align-top">
+                    <Link
+                      href={`/admin/invoices/new?quotation_id=${q.id}`}
+                      className="text-xs font-mono text-brand-red whitespace-nowrap"
+                    >
+                      Generate Invoice &rarr;
+                    </Link>
                   </td>
                 </tr>
               ))}
